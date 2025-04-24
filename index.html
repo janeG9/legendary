@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+
+<html lang="ru">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Свадьба Анна & Максим</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+
+    <style>
+
+        * {
+
+            margin: 0;
+
+            padding: 0;
+
+            box-sizing: border-box;
+
+        }
+
+
+
+        body {
+
+            font-family: 'Roboto', sans-serif;
+
+            background: #fff5f5;
+
+            color: #4a4a4a;
+
+            line-height: 1.6;
+
+            text-align: center;
+
+        }
+
+
+
+        .hero {
+
+            min-height: 100vh;
+
+            padding: 4rem 2rem;
+
+            background: linear-gradient(rgba(255, 245, 245, 0.9), rgba(255, 245, 245, 0.9)),
+
+                        url('https://images.unsplash.com/photo-1532117364815-720cd35ff6e3') center/cover;
+
+        }
+
+
+
+        h1 {
+
+            font-family: 'Great Vibes', cursive;
+
+            font-size: 4rem;
+
+            color: #b76e79;
+
+            margin-bottom: 1rem;
+
+        }
+
+
+
+        .date {
+
+            font-size: 1.5rem;
+
+            margin-bottom: 3rem;
+
+        }
+
+
+
+        .countdown {
+
+            display: flex;
+
+            justify-content: center;
+
+            gap: 2rem;
+
+            margin: 3rem 0;
+
+            flex-wrap: wrap;
+
+        }
+
+
+
+        .countdown-item {
+
+            background: white;
+
+            padding: 1.5rem;
+
+            border-radius: 10px;
+
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+            min-width: 120px;
+
+        }
+
+
+
+        .number {
+
+            font-size: 2.5rem;
+
+            color: #b76e79;
+
+            font-weight: bold;
+
+        }
+
+
+
+        .label {
+
+            font-size: 0.9rem;
+
+            text-transform: uppercase;
+
+            letter-spacing: 1px;
+
+        }
+
+
+
+        .details {
+
+            max-width: 800px;
+
+            margin: 3rem auto;
+
+            padding: 2rem;
+
+            background: white;
+
+            border-radius: 15px;
+
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+        }
+
+
+
+        .rsvp-button {
+
+            background: #b76e79;
+
+            color: white;
+
+            padding: 1rem 2rem;
+
+            border: none;
+
+            border-radius: 25px;
+
+            font-size: 1.1rem;
+
+            cursor: pointer;
+
+            transition: transform 0.3s ease;
+
+        }
+
+
+
+        .rsvp-button:hover {
+
+            transform: scale(1.05);
+
+        }
+
+
+
+        @media (max-width: 768px) {
+
+            h1 {
+
+                font-size: 3rem;
+
+            }
+
+            
+
+            .countdown {
+
+                gap: 1rem;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="hero">
+
+        <h1>Анна & Максим</h1>
+
+        <div class="date">15 Сентября 2024</div>
+
+        
+
+        <div class="countdown" id="countdown">
+
+            <div class="countdown-item">
+
+                <div class="number" id="days">00</div>
+
+                <div class="label">Дней</div>
+
+            </div>
+
+            <div class="countdown-item">
+
+                <div class="number" id="hours">00</div>
+
+                <div class="label">Часов</div>
+
+            </div>
+
+            <div class="countdown-item">
+
+                <div class="number" id="minutes">00</div>
+
+                <div class="label">Минут</div>
+
+            </div>
+
+            <div class="countdown-item">
+
+                <div class="number" id="seconds">00</div>
+
+                <div class="label">Секунд</div>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="details">
+
+            <h2>Дорогие друзья и родные!</h2>
+
+            <p>Мы будем рады разделить с вами нашу радость<br>
+
+            в день нашего свадебного торжества</p>
+
+            
+
+            <h3>Место проведения</h3>
+
+            <p>Ресторан "Летний сад"<br>
+
+            г. Москва, ул. Садовая, 15</p>
+
+            
+
+            <h3>Начало церемонии</h3>
+
+            <p>15:00</p>
+
+            
+
+            <button class="rsvp-button">Подтвердить присутствие</button>
+
+        </div>
+
+    </div>
+
+
+
+    <script>
+
+        const weddingDate = new Date('September 15, 2024 15:00:00').getTime();
+
+
+
+        function updateCountdown() {
+
+            const now = new Date().getTime();
+
+            const distance = weddingDate - now;
+
+
+
+            if (distance < 0) {
+
+                document.getElementById('countdown').innerHTML = "<h2>Свадьба состоялась! Спасибо что были с нами!</h2>";
+
+                return;
+
+            }
+
+
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+
+
+            document.getElementById('days').innerHTML = days;
+
+            document.getElementById('hours').innerHTML = hours;
+
+            document.getElementById('minutes').innerHTML = minutes;
+
+            document.getElementById('seconds').innerHTML = seconds;
+
+        }
+
+
+
+        // Обновляем каждую секунду
+
+        setInterval(updateCountdown, 1000);
+
+        updateCountdown(); // Первоначальный запуск
+
+    </script>
+
+</body>
+
+</html>
